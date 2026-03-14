@@ -18,7 +18,7 @@ interface MicButtonProps {
  * Records microphone audio and sends it to the backend along with a
  * prerecorded reference audio file for pronunciation scoring.
  */
-const SCORE_THRESHOLD = 80;
+const SCORE_THRESHOLD = 70;
 const API_BASE = import.meta.env.VITE_API_URL ?? 'http://localhost:3000';
 
 function pickMimeType(): string | null {
