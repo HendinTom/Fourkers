@@ -28,6 +28,14 @@ export default function PersonCard({ person, speak, userCoords }: PersonCardProp
 
   return (
     <article className="person-card">
+      <button
+        type="button"
+        className="card-speak-btn"
+        onClick={() => speak(spokenText(person))}
+        aria-label={`Listen — ${person.name}`}
+      >
+        🔊
+      </button>
       <div className="person-card__top">
         <div
           className="avatar"
@@ -43,22 +51,12 @@ export default function PersonCard({ person, speak, userCoords }: PersonCardProp
               <span key={lang} className="lang-tag">{lang}</span>
             ))}
           </div>
-          <p className="person-card__city">📍 {person.city}</p>
+          {distance !== null && (
+            <span className="distance-badge">{formatDistance(distance)}</span>
+          )}
         </div>
-        {distance !== null && (
-          <span className="distance-badge">{formatDistance(distance)}</span>
-        )}
       </div>
-      <p className="person-card__desc">{person.description}</p>
       <div className="card-actions">
-        <button
-          type="button"
-          className="card-btn card-btn--listen"
-          onClick={() => speak(spokenText(person))}
-          aria-label="Listen to this card"
-        >
-          🔊 Listen
-        </button>
         <a
           href={whatsappUrl ?? '#'}
           className="card-btn card-btn--whatsapp"

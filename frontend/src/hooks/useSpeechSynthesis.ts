@@ -1,7 +1,6 @@
 import { useCallback } from 'react';
 
-// Module-level timer: all useSpeechSynthesis instances share one pending speech slot.
-// This prevents overlapping playback and ensures "Hear again" always works reliably.
+// Module-level pending timer — shared across all instances so only one utterance queues at a time
 let pendingTimer: ReturnType<typeof setTimeout> | null = null;
 
 const ttsAvailable =
@@ -15,27 +14,44 @@ export function useSpeechSynthesis() {
       clearTimeout(pendingTimer);
       pendingTimer = null;
     }
-    if (ttsAvailable) window.speechSynthesis.cancel();
+    if (ttsAvailable) {
+      try { window.speechSynthesis.cancel(); } catch (_) { /* ignore */ }
+    }
   }, []);
 
-  const speak = useCallback(
-    (text: string): void => {
-      if (!ttsAvailable || !text.trim()) return;
-      // Cancel any pending or running speech
-      if (pendingTimer !== null) clearTimeout(pendingTimer);
+  const speak = useCallback((text: string): void => {
+    if (!ttsAvailable || !text.trim()) return;
+
+    // Clear any already-queued speak
+    if (pendingTimer !== null) {
+      clearTimeout(pendingTimer);
+      pendingTimer = null;
+    }
+
+    try {
+      // Cancel whatever is playing
       window.speechSynthesis.cancel();
-      // 150 ms delay gives Chrome's cancel() time to settle — key reliability fix
-      pendingTimer = setTimeout(() => {
-        pendingTimer = null;
+
+      // Chrome/mobile bug: synthesis can get stuck in "paused" state.
+      // Calling resume() before speaking fixes silent failures.
+      if (window.speechSynthesis.paused) {
+        window.speechSynthesis.resume();
+      }
+    } catch (_) { /* ignore */ }
+
+    // 250 ms gives cancel() time to fully settle before the new utterance
+    pendingTimer = setTimeout(() => {
+      pendingTimer = null;
+      try {
         const u = new SpeechSynthesisUtterance(text.trim());
-        u.rate = 0.88;
-        u.pitch = 1.0;
-        u.lang = 'en-CA';
+        u.rate   = 0.85;
+        u.pitch  = 1.0;
+        u.volume = 1.0;
+        u.lang   = 'en-CA';
         window.speechSynthesis.speak(u);
-      }, 150);
-    },
-    []
-  );
+      } catch (_) { /* ignore — browser may block without user gesture */ }
+    }, 250);
+  }, []);
 
   return { speak, cancel, supported: ttsAvailable };
 }

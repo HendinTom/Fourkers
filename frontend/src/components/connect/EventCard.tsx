@@ -17,6 +17,14 @@ export default function EventCard({ event, speak, userCoords }: EventCardProps) 
 
   return (
     <article className="event-card">
+      <button
+        type="button"
+        className="card-speak-btn"
+        onClick={() => speak(spokenText(event))}
+        aria-label={`Listen — ${event.title}`}
+      >
+        🔊
+      </button>
       <div className="event-card__emoji" aria-hidden="true">{event.emoji}</div>
       <div className="event-card__body">
         <div className="event-card__header">
@@ -28,23 +36,12 @@ export default function EventCard({ event, speak, userCoords }: EventCardProps) 
         <p className="event-card__meta">
           📍 {event.location} · 🕐 {event.dateTime}
         </p>
-        <p className="event-card__desc">{event.description}</p>
         <div className="card-actions">
-          <button
-            type="button"
-            className="card-btn card-btn--listen"
-            onClick={() => speak(spokenText(event))}
-            aria-label="Listen to this event"
-          >
-            🔊 Listen
-          </button>
           <button
             type="button"
             className="card-btn card-btn--primary"
             onClick={() =>
-              speak(
-                'A community leader can help you get to this event. We will connect you when the backend is ready.'
-              )
+              speak('A community leader can help you get to this event. We will connect you.')
             }
           >
             Get help going
@@ -52,9 +49,9 @@ export default function EventCard({ event, speak, userCoords }: EventCardProps) 
           <button
             type="button"
             className="card-btn card-btn--secondary"
-            onClick={() => speak('We will remind you about this event when reminders are connected.')}
+            onClick={() => speak('We will remind you about this event.')}
           >
-            Remind me
+            🔔 Remind
           </button>
         </div>
       </div>

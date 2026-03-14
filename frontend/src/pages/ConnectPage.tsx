@@ -1,4 +1,4 @@
-import { useState, useEffect, useMemo, useCallback } from 'react';
+import { useState, useMemo, useCallback } from 'react';
 import '../styles/connect.css';
 import { useSpeechSynthesis } from '../hooks/useSpeechSynthesis';
 import { useGeolocation } from '../hooks/useGeolocation';
@@ -12,14 +12,12 @@ import HelpTodayModal from '../components/connect/HelpTodayModal';
 import { LANG_FILTERS } from '../types/connect';
 import type { ConnectSection } from '../types/connect';
 
+// Full spoken prompts — heard when user taps 🔊, not auto-played
 const PROMPTS: Record<string, string> = {
-  home: 'Would you like to meet people, find community events, or talk to a leader? Tap an option or use your voice.',
-  people:
-    'Here are newcomers near you. They speak your language and can help. Tap a card to hear more, or tap WhatsApp to message them.',
-  events:
-    'These are community events near you. Join walks, classes, and more. Tap an event to hear about it or get help going.',
-  leaders:
-    'These are trusted community leaders. They can help with daily life, services, and more. Tap to hear about them or message them.',
+  home: 'Meet people near you. Find community events. Or talk to a community leader. Tap an option, or use your voice.',
+  people: 'These are newcomers near you. They speak your language. Tap the speaker button on any card to hear about them.',
+  events: 'Community events near you. Tap the speaker button on any event to hear more about it.',
+  leaders: 'Trusted community leaders. Tap the speaker button on any card to hear how they can help you.',
 };
 
 export default function ConnectPage() {
@@ -28,24 +26,16 @@ export default function ConnectPage() {
   const [helpOpen, setHelpOpen] = useState(false);
   const [activeLang, setActiveLang] = useState('');
 
-  const { speak, cancel, supported: ttsSupported } = useSpeechSynthesis();
+  // No auto-speak: browser blocks audio before a user gesture.
+  // The 🔊 button in AssistantBar is the user's trigger.
+  const { speak, supported: ttsSupported } = useSpeechSynthesis();
   const { coords } = useGeolocation();
 
   const prompt = useMemo((): string => {
-    if (section === 'people') return PROMPTS['people'];
-    if (section === 'events') return PROMPTS['events'];
+    if (section === 'people')  return PROMPTS['people'];
+    if (section === 'events')  return PROMPTS['events'];
     if (section === 'leaders') return PROMPTS['leaders'];
     return PROMPTS['home'];
-  }, [section]);
-
-  // Speak the prompt whenever the section changes (with a brief startup delay)
-  useEffect(() => {
-    const timer = setTimeout(() => speak(prompt), 500);
-    return () => {
-      clearTimeout(timer);
-      cancel();
-    };
-  // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [section]);
 
   const handleSectionSelect = useCallback((s: ConnectSection): void => {
@@ -62,7 +52,6 @@ export default function ConnectPage() {
     <div className="connect-page">
       <header className="connect-header">
         <h1 className="connect-title">Connect 🌍</h1>
-        <p className="connect-subtitle">Find friends, events, and help nearby</p>
       </header>
 
       <AssistantBar
@@ -116,7 +105,6 @@ export default function ConnectPage() {
 
       {helpOpen && <HelpTodayModal onClose={() => setHelpOpen(false)} />}
 
-      {/* Fixed bottom bar — always visible */}
       <div className="connect-footer">
         <button type="button" className="help-today-btn" onClick={() => setHelpOpen(true)}>
           🆘 I need help today

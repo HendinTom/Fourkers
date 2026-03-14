@@ -28,10 +28,16 @@ export default function LeaderCard({ leader, speak, userCoords }: LeaderCardProp
 
   return (
     <article className="leader-card">
+      <button
+        type="button"
+        className="card-speak-btn"
+        onClick={() => speak(spokenText(leader))}
+        aria-label={`Listen — ${leader.name}`}
+      >
+        🔊
+      </button>
       {leader.verified && (
-        <span className="trusted-badge" aria-label="Verified trusted leader">
-          ✓ Trusted
-        </span>
+        <span className="trusted-badge">✓ Trusted</span>
       )}
       <div className="leader-card__top">
         <div
@@ -49,21 +55,12 @@ export default function LeaderCard({ leader, speak, userCoords }: LeaderCardProp
               <span key={lang} className="lang-tag">{lang}</span>
             ))}
           </div>
+          {distance !== null && (
+            <span className="distance-badge">{formatDistance(distance)}</span>
+          )}
         </div>
-        {distance !== null && (
-          <span className="distance-badge">{formatDistance(distance)}</span>
-        )}
       </div>
-      <p className="leader-card__desc">{leader.helpOffered}</p>
       <div className="card-actions">
-        <button
-          type="button"
-          className="card-btn card-btn--listen"
-          onClick={() => speak(spokenText(leader))}
-          aria-label="Listen to this leader"
-        >
-          🔊 Listen
-        </button>
         <a
           href={whatsappUrl ?? '#'}
           className="card-btn card-btn--whatsapp"
@@ -77,12 +74,10 @@ export default function LeaderCard({ leader, speak, userCoords }: LeaderCardProp
           type="button"
           className="card-btn card-btn--primary"
           onClick={() =>
-            speak(
-              'Your request for a call has been noted. The leader will contact you when the backend is connected.'
-            )
+            speak('Your request for a call has been noted. The leader will contact you.')
           }
         >
-          Request call
+          📞 Call
         </button>
       </div>
     </article>
