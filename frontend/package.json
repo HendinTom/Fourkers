@@ -7,7 +7,7 @@
     "dev": "vite",
     "build": "tsc && vite build",
     "preview": "vite preview",
-    "install": "npm install"
+    "install:all": "npm install"
   },
   "devDependencies": {
     "typescript": "~5.9.3",
