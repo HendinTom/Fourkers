@@ -45,3 +45,4 @@ The frontend will default to `http://localhost:3001`.
 **Reference Audio**
 - Add reference pronunciations in `frontend/src/assets` (for example `Boos.m4a`).
 - Lessons can reference a specific file via `referenceAudioSrc` in `frontend/src/data/lessonContent.ts`.
+- New references can be easily added for each lesson, and new lessons can be easily created.
