@@ -12,10 +12,12 @@
     "install:all": "npm install"
   },
   "dependencies": {
-    "express": "^5.2.1"
+    "express": "^5.2.1",
+    "multer": "^1.4.5-lts.1"
   },
   "devDependencies": {
     "@types/express": "^5.0.6",
+    "@types/multer": "^1.4.12",
     "@types/node": "^25.5.0",
     "nodemon": "^3.1.7",
     "ts-node": "^10.9.2",
