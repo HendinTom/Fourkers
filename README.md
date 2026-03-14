@@ -1,6 +1,6 @@
 # FirstWords.AI
 
-FirstWords.AI is a web app that helps newcomers build day-to-day life skills in Toronto while practicing English pronunciation. It combines simple, audio-first lessons with a community connection hub for people, events, and trusted leaders.
+FirstWords.AI is a web app that helps newcomers build day-to-day life skills in Canada while practicing English pronunciation. It combines simple, audio-first lessons with a community connection hub for people, events, and trusted leaders.
 
 **What's Unique**
 - Audio-first UX designed for low literacy or language barriers, with guided prompts and phonetic breakdowns.
@@ -14,6 +14,7 @@ FirstWords.AI is a web app that helps newcomers build day-to-day life skills in 
 - Node.js (for the React frontend and Express backend)
 - Python 3 + pip (for pronunciation scoring)
 - `ffmpeg` (recommended for reliable audio decoding)
+- `pytorch`
 
 **Backend**
 1. `cd backend`
