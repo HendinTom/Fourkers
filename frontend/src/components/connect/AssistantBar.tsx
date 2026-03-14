@@ -32,7 +32,7 @@ export default function AssistantBar({
 }: AssistantBarProps) {
   const { supported: sttSupported, listening, transcript, start, stop } = useSpeechRecognition();
 
-  function handleHearAgain() {
+  function handleSpeak() {
     speak(text);
   }
 
@@ -50,42 +50,33 @@ export default function AssistantBar({
     });
   }
 
-  const displayText = listening && transcript ? transcript : text;
-
   return (
-    <div className={`assistant-bar${listening ? ' assistant-bar--listening' : ''}`}>
-      <div className="assistant-bar__avatar" aria-hidden="true">
-        <span className="assistant-bar__emoji">🌟</span>
-      </div>
-      <div className="assistant-bar__body">
-        <p className="assistant-bar__text">{displayText}</p>
-        <div className="assistant-bar__actions">
-          {ttsSupported && (
-            <button
-              type="button"
-              className="assistant-btn assistant-btn--replay"
-              onClick={handleHearAgain}
-            >
-              🔊 Hear again
-            </button>
-          )}
-          {sttSupported && (
-            <button
-              type="button"
-              className={`assistant-btn assistant-btn--mic${listening ? ' assistant-btn--active' : ''}`}
-              onClick={handleMic}
-              aria-label={listening ? 'Stop listening' : 'Tap to speak'}
-            >
-              {listening ? '⏹ Stop' : '🎤 Speak'}
-            </button>
-          )}
-        </div>
-        {listening && !transcript && (
-          <p className="assistant-bar__hint">
-            Try saying: "Meet people", "Events", or "Leader"
-          </p>
+    <div className="assistant-bar">
+      <div className="assistant-btns">
+        {ttsSupported && (
+          <button
+            type="button"
+            className="speak-btn-hero"
+            onClick={handleSpeak}
+            aria-label="Listen"
+          >
+            🔊
+          </button>
+        )}
+        {sttSupported && (
+          <button
+            type="button"
+            className={`speak-btn-mic${listening ? ' speak-btn-mic--active' : ''}`}
+            onClick={handleMic}
+            aria-label={listening ? 'Stop listening' : 'Tap to speak'}
+          >
+            {listening ? '⏹' : '🎤'}
+          </button>
         )}
       </div>
+      {listening && transcript && (
+        <p className="assistant-transcript">{transcript}</p>
+      )}
     </div>
   );
 }
