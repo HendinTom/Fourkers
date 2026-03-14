@@ -11,10 +11,10 @@ FirstWords.AI is a web app that helps newcomers build day-to-day life skills in 
 **Install And Run**
 
 **Prerequisites**
-- Node.js (for the React frontend and Express backend)
-- Python 3 + pip (for pronunciation scoring)
+- `Node.js` (for the React frontend and Express backend)
+- `Python 3 + pip` (For running python files in backend)
 - `ffmpeg` (recommended for reliable audio decoding)
-- `pytorch` (For AI capabilities)
+- `pytorch` (For AI capabilities in python)
 
 **Backend**
 1. `cd backend`
