@@ -34,6 +34,8 @@ export interface LessonContent {
   combined: string;
   /** Text spoken by TTS for the combined pronunciation */
   combinedAudio: string;
+  /** Optional prerecorded audio file for the correct pronunciation */
+  referenceAudioSrc: string | null;
 }
 
 export const LESSON_CONTENT: LessonContent[] = [
@@ -50,6 +52,7 @@ export const LESSON_CONTENT: LessonContent[] = [
     ],
     combined: 'B · UH · SS',
     combinedAudio: 'bus',
+    referenceAudioSrc: null, // → '/audio/rohingya/lesson-transit.m4a'
   },
   {
     id: 'english',
@@ -65,6 +68,7 @@ export const LESSON_CONTENT: LessonContent[] = [
     ],
     combined: 'HEH · LOH',
     combinedAudio: 'hello',
+    referenceAudioSrc: null, // → '/audio/rohingya/lesson-english.m4a'
   },
   {
     id: 'housing',
@@ -79,22 +83,23 @@ export const LESSON_CONTENT: LessonContent[] = [
     ],
     combined: 'D · AW · R',
     combinedAudio: 'door',
+    referenceAudioSrc: null, // → '/audio/rohingya/lesson-housing.m4a'
   },
   {
     id: 'health',
-    title: 'Doctor',
+    title: 'Boos',
     imageSrc: null,           // → '/assets/doctor.png'
-    imageEmoji: '👨‍⚕️',
-    imageAlt: 'A doctor',
+    imageEmoji: '🚌',
+    imageAlt: 'Boos (Ruaingga word)',
     phonetics: [
-      { sound: 'D',  audioText: 'duh'  },
-      { sound: 'AH', audioText: 'ah'   },
-      { sound: 'K',  audioText: 'kuh'  },
-      { sound: 'T',  audioText: 'tuh'  },
-      { sound: 'ER', audioText: 'er'   },
+      { sound: 'B',  audioText: 'buh'  },
+      { sound: 'O',  audioText: 'oh'   },
+      { sound: 'OO', audioText: 'ouh'  },
+      { sound: 'S',  audioText: 'shh'  },
     ],
-    combined: 'DAHK · TER',
-    combinedAudio: 'doctor',
+    combined: 'B · O · OO · S',
+    combinedAudio: 'boos',
+    referenceAudioSrc: null, // → '/audio/rohingya/lesson-health.m4a'
   },
   {
     id: 'grocery',
@@ -109,6 +114,7 @@ export const LESSON_CONTENT: LessonContent[] = [
     ],
     combined: 'F · OOD',
     combinedAudio: 'food',
+    referenceAudioSrc: null, // → '/audio/rohingya/lesson-grocery.m4a'
   },
   {
     id: 'school',
@@ -123,6 +129,7 @@ export const LESSON_CONTENT: LessonContent[] = [
     ],
     combined: 'SK · OOL',
     combinedAudio: 'school',
+    referenceAudioSrc: null, // → '/audio/rohingya/lesson-school.m4a'
   },
   {
     id: 'job',
@@ -137,6 +144,7 @@ export const LESSON_CONTENT: LessonContent[] = [
     ],
     combined: 'W · ERK',
     combinedAudio: 'work',
+    referenceAudioSrc: null, // → '/audio/rohingya/lesson-job.m4a'
   },
   {
     id: 'emergency',
@@ -152,5 +160,6 @@ export const LESSON_CONTENT: LessonContent[] = [
     ],
     combined: 'HEH · LP',
     combinedAudio: 'help',
+    referenceAudioSrc: null, // → '/audio/rohingya/lesson-emergency.m4a'
   },
 ];

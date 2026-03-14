@@ -5,12 +5,36 @@ import { useSpeechSynthesis } from '../hooks/useSpeechSynthesis';
 import PhoneticBlock from '../components/learn/PhoneticBlock';
 import MicButton from '../components/learn/MicButton';
 
+const REFERENCE_AUDIO_ASSETS = import.meta.glob('../assets/*.{m4a,mp3,webm}', {
+  eager: true,
+  query: '?url',
+  import: 'default',
+});
+
+function resolveReferenceAudio(title: string): string | null {
+  const candidates = [
+    `../assets/${title}.m4a`,
+    `../assets/${title}.mp3`,
+    `../assets/${title}.webm`,
+  ];
+  for (const path of candidates) {
+    const asset = REFERENCE_AUDIO_ASSETS[path];
+    if (typeof asset === 'string') return asset;
+  }
+  return null;
+}
+
 export default function LessonPage() {
   const { lessonId }  = useParams<{ lessonId: string }>();
   const navigate      = useNavigate();
   const { speak }     = useSpeechSynthesis();
 
   const lesson = LESSON_CONTENT.find((l) => l.id === lessonId);
+  const lessonIndex = LESSON_CONTENT.findIndex((l) => l.id === lessonId);
+  const nextLesson = lessonIndex >= 0 ? LESSON_CONTENT[lessonIndex + 1] : null;
+  const resolvedReferenceAudio = lesson
+    ? lesson.referenceAudioSrc ?? resolveReferenceAudio(lesson.title)
+    : null;
 
   // Unknown lesson id → back to learn list
   if (!lesson) return <Navigate to="/learn" replace />;
@@ -87,7 +111,17 @@ export default function LessonPage() {
       <p className="lesson-word-label">"{lesson.title}"</p>
 
       {/* ── 4. Microphone practice ────────────────────────────────── */}
-      <MicButton expectedWord={lesson.title} />
+      <MicButton
+        expectedWord={lesson.title}
+        referenceAudioSrc={resolvedReferenceAudio}
+        onAdvance={() => {
+          if (nextLesson) {
+            navigate(`/learn/${nextLesson.id}`);
+          } else {
+            navigate('/learn');
+          }
+        }}
+      />
 
     </main>
   );
