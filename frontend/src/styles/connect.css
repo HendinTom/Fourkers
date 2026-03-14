@@ -5,7 +5,7 @@
 }
 
 .connect-header {
-  padding: 24px 0 4px;
+  padding: 8px 0 4px;
   text-align: center;
 }
 
@@ -51,7 +51,7 @@
   align-items: center;
   justify-content: center;
   cursor: pointer;
-  box-shadow: 0 6px 28px rgba(124, 58, 237, 0.55);
+  box-shadow: 0 6px 28px rgba(102, 155, 188, 0.45);
   transition: transform 0.15s, box-shadow 0.15s;
   -webkit-tap-highlight-color: transparent;
 }
@@ -62,18 +62,18 @@
   position: absolute;
   inset: -12px;
   border-radius: 50%;
-  background: rgba(124, 58, 237, 0.18);
+  background: rgba(102, 155, 188, 0.2);
   animation: ringPulse 2.2s ease-in-out infinite;
 }
 
 .speak-btn-hero:hover {
   transform: scale(1.07);
-  box-shadow: 0 10px 36px rgba(124, 58, 237, 0.7);
+  box-shadow: 0 10px 36px rgba(102, 155, 188, 0.6);
 }
 
 .speak-btn-hero:active {
   transform: scale(0.93);
-  box-shadow: 0 2px 12px rgba(124, 58, 237, 0.4);
+  box-shadow: 0 2px 12px rgba(102, 155, 188, 0.3);
 }
 
 /* Smaller 🎤 button */
@@ -81,8 +81,8 @@
   width: 64px;
   height: 64px;
   border-radius: 50%;
-  background: rgba(255, 255, 255, 0.06);
-  border: 2px solid var(--border);
+  background: var(--accent-dim);
+  border: 2px solid var(--accent-border);
   font-size: 1.8rem;
   line-height: 1;
   display: flex;
@@ -94,8 +94,8 @@
 }
 
 .speak-btn-mic:hover {
-  background: rgba(255, 255, 255, 0.1);
-  border-color: rgba(255, 255, 255, 0.2);
+  background: rgba(102, 155, 188, 0.22);
+  border-color: var(--accent);
 }
 
 .speak-btn-mic:active {
@@ -103,8 +103,8 @@
 }
 
 .speak-btn-mic--active {
-  background: rgba(220, 38, 38, 0.18);
-  border-color: #dc2626;
+  background: rgba(201, 64, 64, 0.15);
+  border-color: var(--red);
   animation: pulse 1.2s ease-in-out infinite;
 }
 
@@ -176,7 +176,7 @@
   top: 50%;
   transform: translateY(-50%);
   font-size: 2rem;
-  color: rgba(255, 255, 255, 0.5);
+  color: rgba(255, 255, 255, 0.55);
 }
 
 .section-card:hover {
@@ -188,16 +188,17 @@
   transform: scale(0.98);
 }
 
+/* Section card gradients — warm, welcoming palette */
 .section-card--people {
-  background: linear-gradient(135deg, #3b0764 0%, #6d28d9 55%, #8b5cf6 100%);
+  background: linear-gradient(135deg, #1a4a6b 0%, #2d6e9e 55%, #669bbc 100%);
 }
 
 .section-card--events {
-  background: linear-gradient(135deg, #052e16 0%, #065f46 50%, #059669 100%);
+  background: linear-gradient(135deg, #6b3300 0%, #a05020 55%, #d48040 100%);
 }
 
 .section-card--leaders {
-  background: linear-gradient(135deg, #431407 0%, #9a3412 55%, #f97316 100%);
+  background: linear-gradient(135deg, #1a4a2e 0%, #2d7a4a 55%, #4aaa6a 100%);
 }
 
 .section-card__icon {
@@ -217,7 +218,7 @@
 
 .section-card__tagline {
   font-size: 0.9rem;
-  color: rgba(255, 255, 255, 0.78);
+  color: rgba(255, 255, 255, 0.8);
 }
 
 /* ===== SECTION (People / Leaders inner area) ===== */
@@ -280,7 +281,7 @@
   color: #fff;
   flex-shrink: 0;
   letter-spacing: -0.5px;
-  box-shadow: 0 3px 10px rgba(0, 0, 0, 0.35);
+  box-shadow: 0 3px 10px rgba(0, 0, 0, 0.2);
 }
 
 .lang-tags {
@@ -357,7 +358,7 @@
   align-items: center;
   justify-content: center;
   cursor: pointer;
-  box-shadow: 0 3px 14px rgba(124, 58, 237, 0.45);
+  box-shadow: 0 3px 14px rgba(102, 155, 188, 0.35);
   transition: transform 0.13s, box-shadow 0.13s;
   -webkit-tap-highlight-color: transparent;
   flex-shrink: 0;
@@ -365,7 +366,7 @@
 
 .card-speak-btn:hover {
   transform: scale(1.08);
-  box-shadow: 0 6px 20px rgba(124, 58, 237, 0.65);
+  box-shadow: 0 6px 20px rgba(102, 155, 188, 0.5);
 }
 
 .card-speak-btn:active {
@@ -393,6 +394,7 @@
 .card-btn--secondary {
   background: var(--accent-dim);
   color: var(--accent-light);
+  border: 1px solid var(--accent-border);
 }
 
 .trusted-badge {
@@ -402,9 +404,9 @@
   padding: 4px 10px;
   font-size: 0.78rem;
   font-weight: 700;
-  background: var(--green-dim);
+  background: var(--green-pale);
   color: var(--green);
-  border: 1px solid rgba(16, 185, 129, 0.3);
+  border: 1px solid rgba(42, 138, 92, 0.28);
   border-radius: 20px;
   margin-bottom: 12px;
 }
@@ -412,7 +414,7 @@
 /* ===== PERSON CARD ===== */
 .person-card {
   position: relative;
-  padding: 18px 70px 18px 18px; /* right padding leaves room for the speak button */
+  padding: 18px 70px 18px 18px;
   background: var(--bg-card);
   border: 1px solid var(--border);
   border-radius: var(--radius-xl);
@@ -527,7 +529,7 @@
   flex-shrink: 0;
   width: 54px;
   height: 54px;
-  background: rgba(255, 255, 255, 0.05);
+  background: var(--accent-dim);
   border-radius: var(--radius-md);
   display: flex;
   align-items: center;
@@ -631,7 +633,7 @@
 .modal-overlay {
   position: fixed;
   inset: 0;
-  background: rgba(0, 0, 0, 0.65);
+  background: rgba(0, 0, 0, 0.5);
   z-index: 200;
   display: flex;
   align-items: flex-end;
@@ -682,7 +684,7 @@
   font-size: 1.6rem;
   line-height: 1;
   color: var(--text-muted);
-  background: rgba(255, 255, 255, 0.06);
+  background: var(--accent-dim);
   border: none;
   border-radius: var(--radius-sm);
   display: flex;
@@ -693,7 +695,7 @@
 }
 
 .modal-close:hover {
-  background: rgba(255, 255, 255, 0.1);
+  background: rgba(102, 155, 188, 0.22);
   color: var(--text);
 }
 
@@ -727,7 +729,7 @@
   justify-content: space-between;
   gap: 12px;
   padding: 14px 16px;
-  background: rgba(255, 255, 255, 0.04);
+  background: var(--accent-dim);
   border: 1px solid var(--border);
   border-radius: var(--radius-md);
 }
@@ -747,7 +749,7 @@
 }
 
 .help-list__link--emergency {
-  background: #dc2626;
+  background: var(--red);
 }
 
 .help-note {
@@ -760,7 +762,7 @@
 .connect-footer {
   position: fixed;
   bottom: 0;
-  left: 0;
+  left: var(--sidebar-w); /* offset by sidebar width */
   right: 0;
   padding: 10px 16px calc(10px + env(safe-area-inset-bottom));
   background: var(--bg);
@@ -770,7 +772,7 @@
 
 .help-today-btn {
   width: 100%;
-  max-width: 640px;
+  max-width: 680px;
   margin: 0 auto;
   display: flex;
   align-items: center;
@@ -780,9 +782,9 @@
   font-family: inherit;
   font-size: 1rem;
   font-weight: 700;
-  color: #f87171;
+  color: var(--red);
   background: var(--red-dim);
-  border: 2px solid rgba(239, 68, 68, 0.3);
+  border: 2px solid rgba(201, 64, 64, 0.3);
   border-radius: var(--radius-lg);
   cursor: pointer;
   transition: background 0.15s, transform 0.12s;
@@ -790,7 +792,7 @@
 }
 
 .help-today-btn:hover {
-  background: rgba(239, 68, 68, 0.22);
+  background: rgba(201, 64, 64, 0.2);
 }
 
 .help-today-btn:active {

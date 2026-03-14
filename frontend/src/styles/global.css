@@ -1,29 +1,54 @@
 /* ===== DESIGN TOKENS ===== */
 :root {
-  --bg:           #0e0c14;
-  --bg-card:      #1a1626;
-  --bg-card-hover:#221d30;
-  --border:       rgba(255, 255, 255, 0.07);
-  --text:         #f0eef8;
-  --text-muted:   #9e99b0;
-  --text-faint:   #514b63;
-  --accent:       #7c3aed;
-  --accent-light: #a78bfa;
-  --accent-dim:   rgba(124, 58, 237, 0.18);
-  --accent-border:rgba(124, 58, 237, 0.45);
-  --green:        #10b981;
-  --green-dim:    rgba(16, 185, 129, 0.15);
-  --red:          #ef4444;
-  --red-dim:      rgba(239, 68, 68, 0.15);
-  --whatsapp:     #25d366;
-  --whatsapp-dark:#128c46;
-  --radius-xl:    24px;
-  --radius-lg:    18px;
-  --radius-md:    12px;
-  --radius-sm:    8px;
-  --shadow-card:  0 2px 16px rgba(0, 0, 0, 0.3);
-  --shadow-pop:   0 8px 32px rgba(0, 0, 0, 0.45);
-  --font:         'DM Sans', system-ui, -apple-system, sans-serif;
+  /* Brand palette */
+  --primary-bg:    #fdf0d5;   /* warm cream — main background */
+  --primary-accent:#669bbc;   /* steel blue — the spec's primary accent */
+
+  /* Backgrounds */
+  --bg:            #fdf0d5;
+  --bg-card:       #ffffff;
+  --bg-card-hover: #fef8ec;
+  --sidebar-bg:    #f4e4b8;   /* slightly richer cream for sidebar */
+
+  /* Borders */
+  --border:        rgba(102, 155, 188, 0.22);
+
+  /* Text */
+  --text:          #2a2118;   /* warm dark brown — high contrast on cream */
+  --text-muted:    #7a6e62;
+  --text-faint:    #b0a090;
+
+  /* Accent — steel blue family */
+  --accent:        #669bbc;   /* primary interactive / buttons */
+  --accent-light:  #4e82a0;   /* darker shade — used as text colour on light bg */
+  --accent-dim:    rgba(102, 155, 188, 0.13);
+  --accent-border: rgba(102, 155, 188, 0.35);
+
+  /* Status */
+  --green:         #2a8a5c;
+  --green-dim:     rgba(42, 138, 92, 0.13);
+  --green-pale:    rgba(42, 138, 92, 0.08);
+  --red:           #c94040;
+  --red-dim:       rgba(201, 64, 64, 0.13);
+
+  /* WhatsApp */
+  --whatsapp:      #25d366;
+  --whatsapp-dark: #128c46;
+
+  /* Shadows — lighter for bright theme */
+  --shadow-card:   0 2px 14px rgba(0, 0, 0, 0.07);
+  --shadow-pop:    0 8px 28px rgba(0, 0, 0, 0.13);
+
+  /* Radii */
+  --radius-xl:     24px;
+  --radius-lg:     18px;
+  --radius-md:     12px;
+  --radius-sm:     8px;
+
+  /* Layout */
+  --sidebar-w:     220px;
+
+  --font: 'DM Sans', system-ui, -apple-system, sans-serif;
 }
 
 /* ===== RESET ===== */
@@ -69,86 +94,116 @@ img, svg {
   display: block;
 }
 
-/* ===== APP SHELL ===== */
+/* ===== APP SHELL — Sidebar layout ===== */
 #app {
   min-height: 100svh;
   display: flex;
-  flex-direction: column;
 }
 
 .app-shell {
   display: flex;
-  flex-direction: column;
+  flex-direction: row;
   min-height: 100svh;
+  width: 100%;
 }
 
 .app-body {
   flex: 1;
+  min-width: 0;
   overflow-y: auto;
-  max-width: 640px;
-  width: 100%;
-  margin: 0 auto;
-  padding: 0 16px;
+  padding: 32px 32px 32px 32px;
+  max-width: 720px;
 }
 
-/* ===== NAVIGATION ===== */
-.nav {
+/* ===== SIDEBAR NAVIGATION ===== */
+.sidebar {
+  width: var(--sidebar-w);
+  flex-shrink: 0;
+  background: var(--sidebar-bg);
+  border-right: 1px solid var(--border);
   display: flex;
-  gap: 4px;
-  padding: 10px 12px;
-  background: var(--bg-card);
-  border-bottom: 1px solid var(--border);
+  flex-direction: column;
+  padding: 28px 14px 24px;
   position: sticky;
   top: 0;
-  z-index: 50;
-  /* Centre nav within the 640px content column */
-  justify-content: center;
+  height: 100svh;
+  overflow: hidden;
 }
 
-.nav > * {
-  max-width: 220px;
-  flex: 1;
-}
-
-.nav-tab {
+.sidebar-brand {
   display: flex;
   align-items: center;
-  justify-content: center;
-  gap: 8px;
-  padding: 12px 16px;
-  font-size: 1rem;
-  font-weight: 600;
-  color: var(--text-muted);
-  background: transparent;
-  border: 2px solid transparent;
-  border-radius: var(--radius-md);
-  transition: background 0.18s, color 0.18s, border-color 0.18s;
-  -webkit-tap-highlight-color: transparent;
+  gap: 10px;
+  padding: 0 10px 22px;
+  border-bottom: 1px solid var(--border);
+  margin-bottom: 12px;
+  flex-shrink: 0;
 }
 
-.nav-tab:hover {
-  background: var(--accent-dim);
-  color: var(--accent-light);
-}
-
-.nav-tab--active {
-  background: var(--accent-dim);
-  color: var(--accent-light);
-  border-color: var(--accent-border);
-}
-
-.nav-tab__icon {
-  font-size: 1.2rem;
+.sidebar-brand__logo {
+  font-size: 1.7rem;
   line-height: 1;
 }
 
-.nav-tab__label {
+.sidebar-brand__name {
+  font-size: 1.1rem;
+  font-weight: 800;
+  color: var(--text);
+  letter-spacing: -0.3px;
+}
+
+.sidebar-nav {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}
+
+.sidebar-item {
+  display: flex;
+  align-items: center;
+  gap: 11px;
+  width: 100%;
+  padding: 13px 13px;
+  font-family: inherit;
+  font-size: 0.97rem;
+  font-weight: 600;
+  color: var(--text-muted);
+  background: transparent;
+  border: none;
+  border-left: 3px solid transparent;
+  border-radius: 0 var(--radius-md) var(--radius-md) 0;
+  cursor: pointer;
+  transition: background 0.15s, color 0.15s, border-color 0.15s;
+  -webkit-tap-highlight-color: transparent;
+  text-align: left;
+}
+
+.sidebar-item:hover {
+  background: var(--accent-dim);
+  color: var(--accent-light);
+  border-left-color: rgba(102, 155, 188, 0.4);
+}
+
+.sidebar-item--active {
+  background: var(--accent-dim);
+  color: var(--accent-light);
+  font-weight: 700;
+  border-left-color: var(--accent);
+}
+
+.sidebar-item__icon {
+  font-size: 1.25rem;
+  line-height: 1;
+  flex-shrink: 0;
+}
+
+.sidebar-item__label {
   font-size: 0.95rem;
 }
 
 /* ===== PAGE HEADER (shared) ===== */
 .page-header {
-  padding: 24px 0 20px;
+  padding: 0 0 20px;
 }
 
 .page-header h1 {
@@ -159,55 +214,6 @@ img, svg {
 .page-header p {
   font-size: 1rem;
   color: var(--text-muted);
-}
-
-/* ===== LEARNING PAGE ===== */
-.learning-page {
-  padding-bottom: 48px;
-}
-
-.learning-page .page-header {
-  text-align: center;
-}
-
-.topic-grid {
-  display: grid;
-  gap: 14px;
-}
-
-.topic-card {
-  display: flex;
-  flex-direction: column;
-  gap: 6px;
-  padding: 20px;
-  background: var(--bg-card);
-  border: 1px solid var(--border);
-  border-radius: var(--radius-lg);
-  box-shadow: var(--shadow-card);
-  animation: cardIn 0.3s ease both;
-  transition: transform 0.18s, box-shadow 0.18s;
-}
-
-.topic-card:hover {
-  transform: translateY(-2px);
-  box-shadow: var(--shadow-pop);
-}
-
-.topic-card__icon {
-  font-size: 2rem;
-  line-height: 1;
-  margin-bottom: 4px;
-}
-
-.topic-card__title {
-  font-size: 1.1rem;
-  font-weight: 700;
-}
-
-.topic-card__desc {
-  font-size: 0.92rem;
-  color: var(--text-muted);
-  line-height: 1.45;
 }
 
 /* ===== SHARED ANIMATIONS ===== */
@@ -232,7 +238,7 @@ img, svg {
 }
 
 @keyframes ringPulse {
-  0%   { transform: scale(0.85); opacity: 0.7; }
-  50%  { transform: scale(1.1);  opacity: 0.25; }
-  100% { transform: scale(0.85); opacity: 0.7; }
+  0%   { transform: scale(0.85); opacity: 0.6; }
+  50%  { transform: scale(1.1);  opacity: 0.2; }
+  100% { transform: scale(0.85); opacity: 0.6; }
 }

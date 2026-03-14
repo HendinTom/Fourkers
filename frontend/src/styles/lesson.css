@@ -1,0 +1,275 @@
+/* ===== LESSON DETAIL PAGE ===== */
+.lesson-page {
+  max-width: 480px;
+  padding-bottom: 60px;
+  animation: fadeIn 0.25s ease;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 0;
+}
+
+/* ── Top row ── */
+.lesson-top-row {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  width: 100%;
+  margin-bottom: 28px;
+}
+
+.lesson-back-btn {
+  width: 48px;
+  height: 48px;
+  border-radius: 50%;
+  background: var(--accent-dim);
+  border: 2px solid var(--accent-border);
+  color: var(--accent-light);
+  font-size: 1.4rem;
+  font-weight: 700;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  transition: background 0.15s, transform 0.12s;
+  -webkit-tap-highlight-color: transparent;
+  flex-shrink: 0;
+}
+
+.lesson-back-btn:hover {
+  background: rgba(102, 155, 188, 0.22);
+  transform: translateX(-2px);
+}
+
+.lesson-back-btn:active {
+  transform: scale(0.95);
+}
+
+.lesson-page-title {
+  font-size: 1.8rem;
+  font-weight: 800;
+  color: var(--text);
+  text-align: center;
+  letter-spacing: -0.3px;
+}
+
+.lesson-top-row__spacer {
+  width: 48px;
+  flex-shrink: 0;
+}
+
+/* ── 1. Lesson image ── */
+.lesson-image {
+  width: 200px;
+  height: 200px;
+  border-radius: var(--radius-xl);
+  background: var(--accent-dim);
+  border: 2px solid var(--accent-border);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-bottom: 36px;
+  box-shadow: var(--shadow-card);
+  overflow: hidden;
+  flex-shrink: 0;
+}
+
+.lesson-image__emoji {
+  font-size: 7rem;
+  line-height: 1;
+  /* Drop shadow makes the emoji pop off the background */
+  filter: drop-shadow(0 4px 10px rgba(0, 0, 0, 0.18));
+}
+
+.lesson-image__img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+/* ── 2. Phonetic steps ── */
+.lesson-phonetics {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 10px;
+  margin-bottom: 28px;
+}
+
+.lesson-section-hint {
+  font-size: 0.9rem;
+  font-weight: 600;
+  color: var(--text-muted);
+  text-transform: uppercase;
+  letter-spacing: 0.06em;
+  margin-bottom: 6px;
+  align-self: flex-start;
+}
+
+/* Single phonetic row */
+.phonetic-block {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  width: 100%;
+  padding: 14px 20px;
+  background: var(--bg-card);
+  border: 1.5px solid var(--border);
+  border-radius: var(--radius-lg);
+  box-shadow: var(--shadow-card);
+  animation: cardIn 0.3s ease both;
+  gap: 12px;
+}
+
+.phonetic-block__sound {
+  font-size: 2.8rem;
+  font-weight: 800;
+  color: var(--text);
+  line-height: 1;
+  letter-spacing: -0.5px;
+  /* Monospace feel without a monospace font */
+  min-width: 60px;
+  text-align: left;
+}
+
+.phonetic-block__btn {
+  width: 52px;
+  height: 52px;
+  border-radius: 50%;
+  background: linear-gradient(135deg, var(--accent) 0%, var(--accent-light) 100%);
+  border: none;
+  font-size: 1.5rem;
+  line-height: 1;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  box-shadow: 0 3px 12px rgba(102, 155, 188, 0.35);
+  transition: transform 0.13s, box-shadow 0.13s;
+  -webkit-tap-highlight-color: transparent;
+  flex-shrink: 0;
+}
+
+.phonetic-block__btn:hover {
+  transform: scale(1.08);
+  box-shadow: 0 5px 18px rgba(102, 155, 188, 0.5);
+}
+
+.phonetic-block__btn:active {
+  transform: scale(0.93);
+}
+
+/* ── 3. Combined word ── */
+.lesson-combined {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 16px;
+  padding: 20px 28px;
+  background: rgba(102, 155, 188, 0.08);
+  border: 2px solid var(--accent-border);
+  border-radius: var(--radius-xl);
+  width: 100%;
+  margin-bottom: 14px;
+  box-shadow: 0 2px 16px rgba(102, 155, 188, 0.12);
+}
+
+.lesson-combined__word {
+  font-size: 2.4rem;
+  font-weight: 800;
+  color: var(--accent-light);
+  letter-spacing: 0.04em;
+  line-height: 1;
+}
+
+.lesson-combined__speak {
+  width: 56px;
+  height: 56px;
+  border-radius: 50%;
+  background: linear-gradient(135deg, var(--accent) 0%, var(--accent-light) 100%);
+  border: none;
+  font-size: 1.6rem;
+  line-height: 1;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  box-shadow: 0 3px 14px rgba(102, 155, 188, 0.4);
+  transition: transform 0.13s, box-shadow 0.13s;
+  -webkit-tap-highlight-color: transparent;
+  flex-shrink: 0;
+}
+
+.lesson-combined__speak:hover {
+  transform: scale(1.08);
+  box-shadow: 0 6px 22px rgba(102, 155, 188, 0.55);
+}
+
+.lesson-combined__speak:active {
+  transform: scale(0.93);
+}
+
+.lesson-word-label {
+  font-size: 1.05rem;
+  font-weight: 600;
+  color: var(--text-muted);
+  margin-bottom: 40px;
+  font-style: italic;
+}
+
+/* ── 4. Microphone practice button ── */
+.mic-btn-wrap {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 10px;
+}
+
+.mic-practice-btn {
+  position: relative;
+  width: 110px;
+  height: 110px;
+  border-radius: 50%;
+  background: linear-gradient(145deg, #1f7a50 0%, var(--green) 100%);
+  border: none;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  box-shadow: 0 6px 28px rgba(42, 138, 92, 0.45);
+  transition: transform 0.15s, box-shadow 0.15s;
+  -webkit-tap-highlight-color: transparent;
+}
+
+/* Pulsing ring — invites the user to press */
+.mic-practice-btn::before {
+  content: '';
+  position: absolute;
+  inset: -14px;
+  border-radius: 50%;
+  background: rgba(42, 138, 92, 0.18);
+  animation: ringPulse 2s ease-in-out infinite;
+}
+
+.mic-practice-btn:hover {
+  transform: scale(1.06);
+  box-shadow: 0 10px 40px rgba(42, 138, 92, 0.6);
+}
+
+.mic-practice-btn:active {
+  transform: scale(0.95);
+}
+
+.mic-practice-btn__icon {
+  font-size: 3.2rem;
+  line-height: 1;
+  position: relative;
+  z-index: 1;
+}
+
+.mic-btn-hint {
+  font-size: 0.88rem;
+  font-weight: 600;
+  color: var(--text-muted);
+}
