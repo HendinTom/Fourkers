@@ -32,10 +32,7 @@ If your Python executable is not `python`, set `PYTHON_PATH`:
 2. `npm install`
 3. `npm run dev`
 
-The frontend will default to `http://localhost:5173`.
-
-To point the UI at a different backend, set:
-`VITE_API_URL=http://localhost:3000`
+The frontend will default to `http://localhost:3001`.
 
 **How It Works**
 - The React frontend provides two main sections: Learn and Connect.
